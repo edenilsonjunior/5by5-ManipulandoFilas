@@ -4,9 +4,9 @@
     {
         static void Main(string[] args)
         {
-            FilaNumero f1 = new FilaNumero();
-            FilaNumero f2 = new FilaNumero();
-            FilaNumero f3 = new FilaNumero();
+            FilaNumero f1 = new();
+            FilaNumero f2 = new();
+            FilaNumero f3 = new();
 
             while (true)
             {
@@ -53,7 +53,7 @@
                         Environment.Exit(0);
                         break;
                     default:
-                        Console.WriteLine("Opcao inváida!");
+                        Console.WriteLine("Opcao inválida!");
                         break;
                 }
 
@@ -81,17 +81,18 @@
             Console.WriteLine("0- Sair");
             Console.Write("R: ");
 
-            bool conversao = int.TryParse(Console.ReadLine(), out int option);
-
-            if (!conversao)
+            if(int.TryParse(Console.ReadLine(), out int option))
+            {
+                return option;
+            }
+            else
             {
                 Console.WriteLine("Voce deve digitar um numero!");
                 Console.Write("Pressione qualquer tecla para voltar ao menu...");
                 Console.ReadKey();
                 return Menu();
-            }
 
-            return option;
+            }
         }
 
         static void VerificarIgualdades(FilaNumero f1, FilaNumero f2)
@@ -100,17 +101,11 @@
             int sizeP2 = f2.GetTamanho();
 
             if (sizeP1 == sizeP2)
-            {
                 Console.WriteLine("As filas possuem o mesmo tamanho!");
-            }
             else if (sizeP1 > sizeP2)
-            {
                 Console.WriteLine("A fila f1 é maior do que a fila f2!");
-            }
             else
-            {
                 Console.WriteLine("A fila f2 é maior do que a fila f1!");
-            }
         }
 
         static Numero LerNumero()
